@@ -21,3 +21,4 @@ attempt uses PCA and a Decision Tree Regressor, and only got 78%. What's next?
 
 * [Kaggle Competition](https://www.kaggle.com/c/census-income)
 * [Cincinnati Machine Learning Meetup](https://www.meetup.com/Cincinnati-Machine-Learning-Meetup/)
+* [Some notes to help us get started](https://github.com/shoreason/meetupkaggleIntro/blob/master/Scratch%20-%20Kaggle%20hack%20night.ipynb)
