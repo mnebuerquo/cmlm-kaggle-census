@@ -50,3 +50,6 @@ def feature_xform(df):
     X = X.assign(net_capital = X.capital_gain - X.capital_loss).\
           drop(["capital_gain", "capital_loss"], axis=1)
     return drop_income(X).astype(float)
+
+def list_to_ints(s, cutoff):
+    return [ int(x+1-cutoff) for x in s ]

@@ -30,21 +30,31 @@ X_test_std = std_scale.transform(X_test)
 
 pca = decomposition.PCA(n_components=3)
 pca.fit(X_train_std)
-X = pca.transform(X_train_std)
+Xr = pca.transform(X_train_std)
 Xt = pca.transform(X_test_std)
 
 dtr = DecisionTreeRegressor()
-dtr.fit(X, y)
+dtr.fit(Xr, y)
 
 print(train_data[:10])
-print(X[:10])
-print(dtr.predict(X[:10]))
+print(Xr[:10])
+print(dtr.predict(Xr[:10]))
 
-Yt = dtr.predict(Xt)
+cutoff = .55
 
-cutoff = .5
+v = list_to_ints(dtr.predict(Xr),cutoff)
+
+correct = 0
+for i in range(len(v)):
+    if y[i] == v[i] :
+        correct += 1
+print("percent: "+str(correct/max(1,len(v))))
+
+Yt = list_to_ints(dtr.predict(Xt), cutoff)
+
 with open('solution.csv', 'w') as of:
     of.write("id,label\n")
     for i in range(16281):
         outcome = int(Yt[i] + 1 - cutoff)
-        of.write(','.join([str(i),str(outcome)])+"\n")
+        # of.write(','.join([str(i),str(Yt[i])])+"\n")
+        of.write("{},{}\n".format(i,Yt[i]))
